@@ -29,7 +29,7 @@ const ScoutUser = function(scoutuser) {
   };
   
   ScoutUser.findById = (customerId, result) => {
-    sql.query(`SELECT * FROM customers WHERE id = ${customerId}`, (err, res) => {
+    sql.query(`SELECT * FROM scout_user WHERE id_scout_user = ${customerId}`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -55,7 +55,7 @@ const ScoutUser = function(scoutuser) {
         return;
       }
   
-      console.log("customers: ", res);
+      console.log("scout: ", res);
       result(null, res);
     });
   };
