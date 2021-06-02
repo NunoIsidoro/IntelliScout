@@ -4,7 +4,7 @@ const app = express()
 
 const bodyParser = require('body-parser')
 
-const port = 60000
+const port = 3000
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
@@ -19,5 +19,5 @@ const scoutRoute = require("../IntelliScout/routes/scout_user.routes.js");
 
 app.use('/scouts', scoutRoute)
 
-// set port, listen for requests
+
 app.listen(3000, () => console.log('Conectado na porta ' + port))

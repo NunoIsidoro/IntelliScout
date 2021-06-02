@@ -1,21 +1,22 @@
+
 module.exports = app => {
-    const customers = require("../controllers/scout_user.controller.js");
+    const ScoutUser = require("../controllers/scout_user.controller.js");
   
-    // Create a new Customer
-    app.post("/customers", customers.create);
+    // Create a new scout
+    app.post("/scout_user", ScoutUser.create);
   
-    // Retrieve all Customers
+    // Retrieve all scouts
     app.get("/scout_user", ScoutUser.getAll);
   
-    // Retrieve a single Customer with customerId
-    app.get("/customers/:customerId", customers.findOne);
+    // Retrieve a single scout with id_scout_user
+    app.get("/scout_user/:id_scout_user", ScoutUser.findOne);
   
-    // Update a Customer with customerId
-    app.put("/customers/:customerId", customers.update);
+    // Update a scout with id_scout_user
+    app.put("/scout_user/:id_scout_user", ScoutUser.update);
   
-    // Delete a Customer with customerId
-    app.delete("/customers/:customerId", customers.delete);
+    // Delete a scout with id_scout_user
+    app.delete("/scout_user/:id_scout_user", ScoutUser.delete);
   
-    // Create a new Customer
-    app.delete("/customers", customers.deleteAll);
+    // Create a new scout
+    app.delete("/scout_user", ScoutUser.deleteAll);
 };
