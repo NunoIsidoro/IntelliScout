@@ -15,6 +15,8 @@ connection.connect(error => {
     if (error) throw error;
     console.log(error)
     console.log("Conectado com sucesso à base de dados.");
+
+    console.log('connected as id ' + connection.threadId);
   });
   
   module.exports = connection;

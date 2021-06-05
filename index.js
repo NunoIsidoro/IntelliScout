@@ -20,4 +20,4 @@ const scoutRoute = require("../IntelliScout/routes/scout_user.routes.js");
 app.use('/scouts', scoutRoute)
 
 
-app.listen(3000, () => console.log('Conectado na porta ' + port))
+app.listen(port, () => console.log('Conectado na porta ' + port))
