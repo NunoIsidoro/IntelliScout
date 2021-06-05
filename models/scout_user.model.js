@@ -15,6 +15,7 @@ const ScoutUser = function(scoutuser) {
     this.zip_code_id_zip_code = ScoutUser.zipCode;
   };
  
+  /*
   ScoutUser.create = (newScoutUser, result) => {
     sql.query("INSERT INTO scout_user SET ?", newScoutUser, (err, res) => {
       if (err) {
@@ -26,8 +27,9 @@ const ScoutUser = function(scoutuser) {
       console.log("created Scout: ", { id: res.insertId, ...newCustomer });
       result(null, { id: res.insertId, ...newCustomer });
     });
-  };
+  };*/
   
+  /*
   ScoutUser.findById = (customerId, result) => {
     sql.query(`SELECT * FROM scout_user WHERE id_scout_user = ${customerId}`, (err, res) => {
       if (err) {
@@ -46,7 +48,7 @@ const ScoutUser = function(scoutuser) {
       result({ kind: "not_found" }, null);
     });
   };
-  
+  */
   ScoutUser.getAll = result => {
     sql.query("SELECT * FROM scout_user", (err, res) => {
       if (err) {
@@ -60,6 +62,7 @@ const ScoutUser = function(scoutuser) {
     });
   };
   
+  /*
   ScoutUser.updateById = (id, customer, result) => {
     sql.query(
       "UPDATE customers SET email = ?, name = ?, active = ? WHERE id = ?",
@@ -83,6 +86,9 @@ const ScoutUser = function(scoutuser) {
     );
   };
   
+  */
+
+  /*
   ScoutUser.remove = (id, result) => {
     sql.query("DELETE FROM customers WHERE id = ?", id, (err, res) => {
       if (err) {
@@ -101,7 +107,9 @@ const ScoutUser = function(scoutuser) {
       result(null, res);
     });
   };
+  */
   
+  /*
   ScoutUser.removeAll = result => {
     sql.query("DELETE FROM customers", (err, res) => {
       if (err) {
@@ -114,5 +122,6 @@ const ScoutUser = function(scoutuser) {
       result(null, res);
     });
   };
+  */
   
   module.exports = ScoutUser;

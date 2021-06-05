@@ -1,6 +1,6 @@
 // libraries
 const mysql = require("mysql");
-const dbConfig = require("../config/db.config.js");
+const dbConfig = require('../config/db.config.js');
 
 // Create a connection to the database
 const connection = mysql.createConnection({
@@ -15,8 +15,6 @@ connection.connect(error => {
     if (error) throw error;
     console.log(error)
     console.log("Conectado com sucesso à base de dados.");
-
-    console.log('connected as id ' + connection.threadId);
   });
   
   module.exports = connection;
