@@ -1,23 +1,16 @@
-// import libraries
-const express = require("express")
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = 3000;
+const scoutRoute = require('./routes/scoutUserRoutes');
 
-const bodyParser = require('body-parser')
 
-const port = 3000
+app.get('/', (req, res) => {
+  res.json({'message': 'ok'});
+})
 
-// parse requests of content-type: application/json
-app.use(bodyParser.json());
-
-// rota inicial
-app.get("/", (req, res) => {
-    res.json({ message: "Bem vindo, Api de IntelliScout." });
+app.use('/scout', scoutRoute);
+  
+app.listen(port, () => {
+  console.log('Conectado na porta ' + port)
 });
-
-
-const scoutRoute = require("../IntelliScout/routes/scout_user.routes.js");
-
-app.use('/scouts', scoutRoute)
-
-
-app.listen(port, () => console.log('Conectado na porta ' + port))

@@ -1,20 +1,28 @@
-// libraries
-const mysql = require("mysql");
-const dbConfig = require('../config/db.config.js');
+// conectar a base de dados e correr queries
 
-// Create a connection to the database
-const connection = mysql.createConnection({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB
-});
+const mysql = require('mysql2/promise');
+const dbConfig = require('../config/dbconfig');
 
-// open the MySQL connection
-connection.connect(error => {
-    if (error) throw error;
-    console.log(error)
-    console.log("Conectado com sucesso à base de dados.");
+async function query(sql, params) {
+  const connection = await mysql.createConnection({
+    host: dbConfig.HOST,
+    user: dbConfig.USER,
+    password: dbConfig.PASSWORD,
+    database: dbConfig.DB
   });
-  
-  module.exports = connection;
+
+  // open the MySQL connection
+  connection.connect(error => {
+    if (error) throw error;
+    console.log("Successfully connected to the database.");
+  });
+
+
+  const [results, ] = await connection.execute(sql, params);
+
+  return results;
+}
+
+module.exports = {
+  query
+}
