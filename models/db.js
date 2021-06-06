@@ -17,7 +17,6 @@ async function query(sql, params) {
     console.log("Successfully connected to the database.");
   });
 
-
   const [results, ] = await connection.execute(sql, params);
 
   return results;
