@@ -6,11 +6,13 @@ const scoutRoute = require('./routes/scoutUserRoutes');
 
 
 app.get('/', (req, res) => {
-  res.json({'message': 'ok'});
+  res.json({
+    'message': 'Bem vindo, api da IntelliScout.'
+  });
 })
 
 app.use('/scout', scoutRoute);
-  
+
 app.listen(port, () => {
   console.log('Conectado na porta ' + port)
 });
