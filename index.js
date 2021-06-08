@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-const scoutRoute = require('./routes/scoutUserRoutes');
+
 
 // to know if we are conected
 app.get('/', (req, res) => {
@@ -22,7 +22,9 @@ app.get('/', (req, res) => {
   ]);
 })
 
-app.use('/scout', scoutRoute);
+const scoutRoute = require('./routes/scoutUserRoutes');
+
+app.use('/IntelliScoutApi', scoutRoute);
 
 app.listen(port, () => {
   console.log('Conectado na porta ' + port)

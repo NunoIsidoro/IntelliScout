@@ -99,7 +99,7 @@ async function updateScout(id, body) {
 */
 async function removeScout(id) {
 
-  // Remover elemento da tabela atividade
+  // Remove a scoute
   const scout = await db.query(
     'DELETE FROM scout_user WHERE id_scout_user = ?', [id]
   )
