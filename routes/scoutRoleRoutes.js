@@ -5,7 +5,7 @@ const roles = require('../models/scoutRoleModel.js');
 /* GET all scouts on data base. */
 route.get('/role/', async function (req, res, next) {
   try {
-    res.json(await roles.getAllScout(req.query.page));
+    res.json(await roles.getAllRole(req.query.page));
   } catch (err) {
     console.error(`Erro ao tentar buscar os scouts `, err.message);
     next(err);
@@ -14,7 +14,7 @@ route.get('/role/', async function (req, res, next) {
 
 route.get('/role/:id', async function (req, res, next) {
   try {
-    res.json(await roles.getScoutById(req.params.id));
+    res.json(await roles.getRoleById(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar um role.\n`, err.message);
     res.json([{
@@ -32,7 +32,7 @@ route.get('/role/:id', async function (req, res, next) {
 
 route.post('/role/', async function (req, res, next) {
   try {
-    res.json(await roles.createScout(req.body));
+    res.json(await roles.createRole(req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar um escuteiro.\n`, err.message);
     res.json([{
@@ -50,7 +50,7 @@ route.post('/role/', async function (req, res, next) {
 route.put('/role/:id', async function (req, res, next) {
   try {
     console.log(req.params.id)
-    res.json(await roles.updateScout(req.params.id, req.body));
+    res.json(await roles.updateRole(req.params.id, req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue editar o escuteiro.\n`, err.message);
     res.json([{
@@ -67,7 +67,7 @@ route.put('/role/:id', async function (req, res, next) {
 
 route.delete('/role/:id', async function (req, res, next) {
   try {
-    res.json(await roles.removeScout(req.params.id));
+    res.json(await roles.removeRole(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue eliminar o escuteiro.\n`, err.message);
     res.json([{

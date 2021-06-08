@@ -3,11 +3,11 @@ const route = express.Router();
 const login = require('../models/scoutLoginModel.js');
 
 /* 
-  Route to GET all scouts on data base. 
+  Route to GET all login on data base. 
 */
 route.get('/login', async function (req, res, next) {
   try {
-    res.json(await login.getAllScout(req.query.page));
+    res.json(await login.getAllLogin(req.query.page));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar os logins.\n`, err.message);
     res.json([{
@@ -23,11 +23,11 @@ route.get('/login', async function (req, res, next) {
 });
 
 /* 
-  Route to GET one scout on data base. 
+  Route to GET one login on data base. 
 */
 route.get('/login/:id', async function (req, res, next) {
   try {
-    res.json(await login.getScoutById(req.params.id));
+    res.json(await login.getLoginById(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar um login.\n`, err.message);
     res.json([{
@@ -47,7 +47,7 @@ route.get('/login/:id', async function (req, res, next) {
 */
 route.post('/login/', async function (req, res, next) {
   try {
-    res.json(await login.createScout(req.body));
+    res.json(await login.createLogin(req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar um login.\n`, err.message);
     res.json([{
@@ -68,7 +68,7 @@ route.post('/login/', async function (req, res, next) {
 route.put('/login/:id', async function (req, res, next) {
   try {
     console.log(req.params.id)
-    res.json(await login.updateScout(req.params.id, req.body));
+    res.json(await login.updateLogin(req.params.id, req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue editar o login.\n`, err.message);
     res.json([{
@@ -88,7 +88,7 @@ route.put('/login/:id', async function (req, res, next) {
 */
 route.delete('/login/:id', async function (req, res, next) {
   try {
-    res.json(await login.removeScout(req.params.id));
+    res.json(await login.removeLogin(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue eliminar o login.\n`, err.message);
     res.json([{
