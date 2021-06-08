@@ -1,5 +1,7 @@
 /*
-  note: remember put `` insted of '' or "" in queries to make an "enter" or you can use "/"
+  note remember:  
+    put `` insted of '' or "" in queries to make an "enter" or you can use "/"
+    id is auto increment)
 */
 
 // imports
@@ -30,19 +32,19 @@ async function getScoutById(id) {
 }
 
 /*
-  Creat a new scout (remember id is auto increment)
+  Creat a new scout 
 */
 async function createScout(body) {
 
   // show data on console to know what's going on and if we receive the right values
-  console.log(body.id)
   console.log(body)
 
+  console.log("teste 1");
   const scout = await db.query(
-    `INSERT INTO scout_user (name_scout_user, birth_scout_user, gender_scout_user,
-        phone_scout_user, adress_scout_user, active_scout_user, nin_scout_user, phone_ee_scout_user, url_img_scout_user, 
-        scout_login_id_scout_login, scout_team_id_scout_team, zip_code_id_zip_code) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    'INSERT INTO scout_user (name_scout_user, birth_scout_user, gender_scout_user, \
+        phone_scout_user, adress_scout_user, active_scout_user, nin_scout_user, phone_ee_scout_user, url_img_scout_user, \
+        scout_login_id_scout_login, scout_team_id_scout_team, zip_code_id_zip_code) \
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
     [
       body.name, body.birth, body.gender, body.phone, body.adress,
       body.active, body.nin, body.phone_ee, body.url_img,
@@ -57,6 +59,8 @@ async function createScout(body) {
   if (scout.affectedRows) {
     errorMessage = 'Message: Add a Scout successfully'
   }
+
+ 
 
   return {
     scout,

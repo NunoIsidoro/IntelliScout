@@ -13,39 +13,71 @@ route.get('/', async function (req, res, next) {
 });
 
 route.get('/:id', async function (req, res, next) {
-     try {
+  try {
     res.json(await scouts.getScoutById(req.params.id));
   } catch (err) {
-    console.error('Erro ao procurar o scout', err.message);
+    console.error(`*** Erro: ***\n Não consegue adicionar um escuteiro.\n`, err.message);
+    res.json([{
+      'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
+    },
+    {
+      'message': err.message
+    }
+  ]);
+
     next(err);
   }
 });
 
 
-route.post('/', async function(req, res, next){
-  try{
+route.post('/', async function (req, res, next) {
+  try {
     res.json(await scouts.createScout(req.body));
-  }catch(err){
-    console.error(`Erro ao criar um scout`, err.message);
+  } catch (err) {
+    console.error(`*** Erro: ***\n Não consegue adicionar um escuteiro.\n`, err.message);
+    res.json([{
+      'title': 'Pedimos desculpa, não conseguimos adicionar um escuteiro :( ...'
+    },
+    {
+      'message': err.message
+    }
+  ]);
+
     next(err)
-  } 
+  }
 })
 
-route.put('/:id', async function(req, res, next) {
+route.put('/:id', async function (req, res, next) {
   try {
     console.log(req.params.id)
     res.json(await scouts.updateScout(req.params.id, req.body));
   } catch (err) {
-    console.error(`Error ao editar um scout `, err.message);
+    console.error(`*** Erro: ***\n Não consegue editar o escuteiro.\n`, err.message);
+    res.json([{
+        'title': 'Pedimos desculpa, não conseguimos editor o escuteiro :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
+
     next(err);
   }
 });
 
-route.delete('/:id', async function(req, res, next) {
+route.delete('/:id', async function (req, res, next) {
   try {
-    res.json(await activities.removeScout(req.params.id));
+    res.json(await scouts.removeScout(req.params.id));
   } catch (err) {
-    console.error(`Error ao remover um scout `, err.message);
+    console.error(`*** Erro: ***\n Não consegue eliminar o escuteiro.\n`, err.message);
+    res.json([{
+        'title': 'Pedimos desculpa, não conseguimos eliminar o escuteiro :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
+
     next(err);
   }
 });
