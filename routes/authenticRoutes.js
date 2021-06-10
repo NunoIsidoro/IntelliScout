@@ -15,19 +15,19 @@ route.get('/listUsers', async function(req, res, next) {
 });
 
 route.post('/register', async function(req, res, next){
-    const { gmail, password, role} = req.body;
-    //passwordhs = await bcrypt.hash(password, 5);
-      try {
-          var scriptSQL = `insert into scout_login (email_scout_login, password_scout_login, scout_role_id_scout_role) values ('` + gmail + `','` + password + `',` + role +`)`;
-          const result = await db.query(scriptSQL);
-          console.log(scriptSQL);
-          res.status(201).send({mensagem: "Utilizador registado com sucesso!"});
-      } catch (err) {
-          console.error('SQL error', err);
-          res.status(500).send({mensagem: "Erro na conexão BD"})
-      }
+   
+  try{
 
-      console.log(scriptSQL);
+    res.json(await authentic.newUser(req.body))
+    res.status(201).send({mensagem: "Utilizador registado com sucesso!"});
+
+  }catch(err){
+
+    console.error('SQL error', err);
+    res.status(500).send({mensagem: "Erro na conexão BD"})
+    
+  }
+
   
   });
 
