@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 
 const scoutRoute = require('./routes/scoutUserRoutes');
 const authenticRoute = require('./routes/authenticRoutes');
+const equipamentRoute = require('./routes/equipmentRoutes');
 
 
 app.get('/', (req, res) => {
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/scout', scoutRoute);
 app.use('/authentic', authenticRoute);
+app.use('/equipment', equipamentRoute);
   
 app.listen(port, () => {
   console.log('Conectado na porta ' + port)

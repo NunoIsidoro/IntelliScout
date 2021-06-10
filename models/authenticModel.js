@@ -9,6 +9,14 @@ async function getListUsers(){
   return authentic;
 }
 
+async function getById(id){
+  const authentic = await db.query(
+    `SELECT *
+    FROM scout_login where id_scout_login = ` + id + `;`);
+
+  return authentic;
+}
+/*
 async function newUser(body){
 
   const { gmail, password, role} = body;
@@ -17,16 +25,13 @@ async function newUser(body){
   var scriptSQL = `insert into scout_login (email_scout_login, password_scout_login, scout_role_id_scout_role) values ('` + gmail + `','` + password + `',` + role +`)`;
   const result = await db.query(scriptSQL);
   console.log(scriptSQL);
-    //res.status(201).send({mensagem: "Utilizador registado com sucesso!"});
-
-
-      console.log(scriptSQL);
+  //res.status(201).send({mensagem: "Utilizador registado com sucesso!"});
 
   return result;
 }
-
+*/
 
 module.exports = {
   getListUsers,
-  newUser
+  getById
 }
