@@ -8,7 +8,7 @@
 const db = require("./db.js");
 
 /*
-  this function return all rows on DB
+  this function return all logins on DB
 */
 async function getAllLogin() {
   const login = await db.query(
@@ -53,7 +53,7 @@ async function createLogin(body) {
 }
 
 /* 
-  this function is to update a role
+  this function is to update a login 
 */
 async function updateLogin(id, body) {
 

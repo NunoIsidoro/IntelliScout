@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 
 // to know if we are conected
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.json([{
       'title': 'Bem vindo, api da IntelliScout.'
     },
@@ -23,8 +23,16 @@ app.get('/', (req, res) => {
 })
 
 const scoutRoute = require('./routes/scoutUserRoutes');
+app.use('/api', scoutRoute);
 
-app.use('/IntelliScoutApi', scoutRoute);
+const loginRoute = require('./routes/scoutLoginRoutes');
+app.use('/api', loginRoute);
+
+const roleRoute = require('./routes/scoutRoleRoutes');
+app.use('/api', roleRoute);
+
+const activityRoute = require('./routes/activityRoutes');
+app.use('/api', activityRoute);
 
 app.listen(port, () => {
   console.log('Conectado na porta ' + port)

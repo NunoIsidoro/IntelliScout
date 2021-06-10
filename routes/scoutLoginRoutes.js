@@ -43,7 +43,7 @@ route.get('/login/:id', async function (req, res, next) {
 });
 
 /* 
-  Route to CREATE a scout on data base. 
+  Route to CREATE a login on data base. 
 */
 route.post('/login/', async function (req, res, next) {
   try {
@@ -63,7 +63,7 @@ route.post('/login/', async function (req, res, next) {
 })
 
 /* 
-  Route to update a scout on data base. 
+  Route to update a login on data base. 
 */
 route.put('/login/:id', async function (req, res, next) {
   try {
@@ -84,7 +84,7 @@ route.put('/login/:id', async function (req, res, next) {
 });
 
 /* 
-  Route to delete a scout on data base. 
+  Route to delete a login on data base. 
 */
 route.delete('/login/:id', async function (req, res, next) {
   try {
