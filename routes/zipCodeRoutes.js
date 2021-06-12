@@ -1,14 +1,14 @@
 const express = require('express');
 const route = express.Router();
 const db = require("../models/db.js");
-const equipament = require('../models/equipmentModel.js');
+const zipCode = require('../models/zipCodeModel.js');
 
 
 
 route.get('/', async function(req, res, next) {
   try {
-    res.json(await equipament.getAll());
-    res.status(200).send({mensagem: "Lista de equipamentos pedida com sucesso!"})
+    res.json(await zipCode.getAll());
+    res.status(200).send({mensagem: "Lista de distritos pedida com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
     next(err);
@@ -17,8 +17,8 @@ route.get('/', async function(req, res, next) {
 
 route.get('/:id', async function(req, res, next) {
   try {
-    res.json(await equipament.getById(req.params.id));
-    res.status(200).send({mensagem: "Equipamento consultado com sucesso!"})
+    res.json(await zipCode.getById(req.params.id));
+    res.status(200).send({mensagem: "Distrito consultado com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
     next(err);
@@ -28,16 +28,17 @@ route.get('/:id', async function(req, res, next) {
 //Add a new equipment
 route.post('/', async function(req, res, next) { //erro
 
-  const verifyName = await db.query(
-    `select name_equipment from equipment where name_equipment = ?`, [req.body.name]);
+  const verifyDistrict = await db.query(
+    `select district_zip_code from zip_code where district_zip_code = ?`, [req.body.name]);
+
     try {
 
-      if(verifyName.length > 0){
-        res.json({mensagem: "Equipamento já está registado!"});
+      if(verifyDistrict.length > 0){
+        res.json({mensagem: "Districto já está registado!"});
         return;
       }
 
-      res.json(await equipament.addEquipament(req.body));
+      res.json(await zipCode.addZipCode(req.body));
       console.log("Equipamento adicionado com sucesso!");
 
     } catch (err) {
@@ -48,8 +49,8 @@ route.post('/', async function(req, res, next) { //erro
 
 route.delete('/:id', async function(req, res, next) {
   try {
-    res.json(await equipament.deleteEquipament(req.params.id));
-    res.status(200).send({mensagem: "Equipamento eliminado com sucesso!"})
+    res.json(await zipCode.deleteZipCode(req.params.id));
+    res.status(200).send({mensagem: "Distrito eliminado com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
     next(err);
@@ -59,8 +60,8 @@ route.delete('/:id', async function(req, res, next) {
 route.put('/', async function(req, res, next) {
   try {
     console.log(req.body);
-    res.json(await equipament.editEquipment(req.body));
-    res.status(200).send({mensagem: "Equipamento alterado com sucesso!"})
+    res.json(await zipCode.editZipCode(req.body));
+    res.status(200).send({mensagem: "Distrito alterado com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
     next(err);
