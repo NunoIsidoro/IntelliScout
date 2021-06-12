@@ -1,6 +1,6 @@
 // conectar a base de dados e correr queries
 
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const dbConfig = require('../config/dbconfig');
 
 

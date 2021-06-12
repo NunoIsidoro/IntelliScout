@@ -41,7 +41,7 @@ async function createActivity(body) {
 
   const activity = await db.query(
     'INSERT INTO activity (name_activity, dt_start_activity, dt_end_activity, \
-      hour_start_activity, hour_end_activity, activity_localidactivity_local, activity_type_id_activity_type) \
+      hour_start_activity, hour_end_activity, id_activity_local, id_activity_type) \
       VALUES (?, ?, ?, ?, ?, ?, ?)',
     [
       body.name, body.dt_start, body.dt_end, 
@@ -62,8 +62,8 @@ async function updateActivity(id, body) {
   const activity = await db.query(
     `UPDATE activity 
      SET name_activity = ?, dt_start_activity = ?, dt_end_activity = ?,
-     hour_start_activity = ?, hour_end_activity = ?, activity_localidactivity_local = ?, 
-     activity_type_id_activity_type = ?
+     hour_start_activity = ?, hour_end_activity = ?, id_activity_local = ?, 
+     id_activity_type = ?
      WHERE id_activity = ?`, [id],
     [
       body.name, body.dt_start, body.dt_end, 

@@ -40,7 +40,7 @@ async function createLogin(body) {
   console.log(body)
 
   const login = await db.query(
-    `INSERT INTO scout_login (email_scout_login, password_scout_login, scout_role_id_scout_role
+    `INSERT INTO scout_login (email_scout_login, password_scout_login, id_scout_role)
         VALUES (?, ?, ?)`,
     [
       body.email, body.password, body.roleId
@@ -61,7 +61,7 @@ async function updateLogin(id, body) {
   console.log(body)
 
   const login = await db.query(
-    `UPDATE scout_login SET email_scout_login = ?, password_scout_login = ?, scout_role_id_scout_role = ?`,
+    `UPDATE scout_login SET email_scout_login = ?, password_scout_login = ?, id_scout_role = ?`,
     [
       body.email, body.password, body.roleId
     ]

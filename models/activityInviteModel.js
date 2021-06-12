@@ -26,7 +26,7 @@ async function getActivityInviteById(id) {
   const activity = await db.query(
     `SELECT * 
     FROM activity_Invite 
-    WHERE activity_id_activity = ?`, [id], ` AND scout_team_id_scout_team = ?`,);
+    WHERE activity_id_activity = ?`, [id], ` AND id_scout_team = ?`, [id] );
   return activity;
 }
 

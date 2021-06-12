@@ -6,8 +6,6 @@ const port = 3000;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-const scoutRoute = require('./routes/scoutUserRoutes');
-
 
 
 

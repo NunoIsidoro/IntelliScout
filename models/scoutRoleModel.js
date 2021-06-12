@@ -40,7 +40,7 @@ async function createRole(body) {
   console.log(body)
 
   const role = await db.query(
-    `INSERT INTO scout_role (name_scout_role, descr_scout_role, 
+    `INSERT INTO scout_role (name_scout_role, descr_scout_role), 
         VALUES (?, ?)`,
     [
       body.name, body.descr
