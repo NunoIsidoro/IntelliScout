@@ -1,13 +1,13 @@
 const express = require('express');
 const route = express.Router();
-const activity = require('../models/activityModel.js');
+const activity = require('../models/activityInviteModel.js');
 
 /* 
   Route to GET all activity on data base. 
 */
-route.get('/activity', async function (req, res, next) {
+route.get('/activityinvite', async function (req, res, next) {
   try {
-    res.json(await activity.getAllActivity(req.query.page));
+    res.json(await activity.getAllActivityInvite(req.query.page));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar as atividades.\n`, err.message);
     res.json([{
@@ -25,9 +25,9 @@ route.get('/activity', async function (req, res, next) {
 /* 
   Route to GET one activity on data base. 
 */
-route.get('/activity/:id', async function (req, res, next) {
+route.get('/activityinvite/:id/:id2', async function (req, res, next) {
   try {
-    res.json(await activity.getActivityById(req.params.id));
+    res.json(await activity.getActivityInviteById(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar a atividade.\n`, err.message);
     res.json([{
@@ -47,7 +47,7 @@ route.get('/activity/:id', async function (req, res, next) {
 */
 route.post('/activity/', async function (req, res, next) {
   try {
-    res.json(await activity.createActivity(req.body));
+    res.json(await activity.createActivityInvite(req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar a actividade.\n`, err.message);
     res.json([{
@@ -68,7 +68,7 @@ route.post('/activity/', async function (req, res, next) {
 route.put('/activity/:id', async function (req, res, next) {
   try {
     console.log(req.params.id)
-    res.json(await activity.updateActivity(req.params.id, req.body));
+    res.json(await activity.updateActivityInvite(req.params.id, req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue editar a atividade.\n`, err.message);
     res.json([{
@@ -88,7 +88,7 @@ route.put('/activity/:id', async function (req, res, next) {
 */
 route.delete('/activity/:id', async function (req, res, next) {
   try {
-    res.json(await scouts.removeActivity(req.params.id));
+    res.json(await scouts.removeActivityInvite(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue eliminar a atividade.\n`, err.message);
     res.json([{

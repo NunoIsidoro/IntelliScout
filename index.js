@@ -40,6 +40,9 @@ app.use('/api', roleRoute);
 const activityRoute = require('./routes/activityRoutes');
 app.use('/api', activityRoute);
 
+const activityInviteRoute = require('./routes/activityInviteRoutes');
+app.use('/api', activityInviteRoute);
+
 const authenticRoute = require('./routes/authenticRoutes');
 app.use('/api', authenticRoute);
 

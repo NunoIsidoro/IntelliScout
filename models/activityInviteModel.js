@@ -21,30 +21,28 @@ async function getAllActivityInvite() {
 /*
   this function return the chosed one
 */
-async function getActivityInviteById(id) {
+async function getActivityInviteById(id, id2) {
 
   const activity = await db.query(
     `SELECT * 
-    FROM activity_Invite 
-    WHERE activity_id_activity = ?`, [id], ` AND id_scout_team = ?`, [id] );
+    FROM activity_invite 
+    WHERE id_activity = ?`, [id], ` AND id_scout_team = ?`, [id2] );
   return activity;
 }
 
 /*
   Creat a new activity 
 */
-async function createActivity(body) {
+async function createActivityInvite(body) {
 
   // show data on console to know what's going on and if we receive the right values
   console.log(body)
 
   const activity = await db.query(
-    'INSERT INTO activity (name_activity, dt_start_activity, dt_end_activity, \
-      hour_start_activity, hour_end_activity, activity_localidactivity_local, activity_type_id_activity_type) \
-      VALUES (?, ?, ?, ?, ?, ?, ?)',
+    `INSERT INTO activity_invite (id_scout_team, id_activity)
+      VALUES (?, ?)`,
     [
-      body.name, body.dt_start, body.dt_end, 
-      body.hour_start, body.hour_end, body.local, body.idType
+      body.idTeam, body.idActivity
     ],
   )
 
@@ -56,17 +54,14 @@ async function createActivity(body) {
 /* 
   this function is to update a activity
 */
-async function updateActivity(id, body) {
+async function updateActivityInvite(id, id2, body) {
 
   const activity = await db.query(
-    `UPDATE activity 
-     SET name_activity = ?, dt_start_activity = ?, dt_end_activity = ?,
-     hour_start_activity = ?, hour_end_activity = ?, activity_localidactivity_local = ?, 
-     activity_type_id_activity_type = ?
-     WHERE id_activity = ?`, [id],
+    `UPDATE activity_invite 
+     SET id_scout_team = ?, id_activity = ?
+     WHERE id_activity = ?`, [id], `AND` , [id2] 
     [
-      body.name, body.dt_start, body.dt_end, 
-      body.hour_start, body.hour_end, body.local, body.idType
+      body.idTeam, body.idActivity
     ]
   )
 }
@@ -74,16 +69,16 @@ async function updateActivity(id, body) {
 /*
   this function is to remove a Activity
 */
-async function removeActivity(id) {
+async function removeActivityInvite(id) {
 
   const activity = await db.query(
-    'DELETE FROM activity WHERE id_activity = ?', [id]
-  )
+    `DELETE FROM activity_invite WHERE id_activity = ?`, [id], ` AND id_scout_team = ?`, [id2] );
 }
+
 module.exports = {
-  getAllActivity,
-  getActivityById,
-  createActivity,
-  updateActivity,
-  removeActivity
+  getAllActivityInvite,
+  getActivityInviteById,
+  createActivityInvite,
+  updateActivityInvite,
+  removeActivityInvite
 }
