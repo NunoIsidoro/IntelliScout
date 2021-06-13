@@ -13,7 +13,7 @@ const db = require("./db.js");
 async function getAll() {
   const activity = await db.query(
     `SELECT *
-    FROM activity_invite`, );
+    FROM activity_local`, );
 
   return activity;
 }
@@ -21,12 +21,12 @@ async function getAll() {
 /*
   this function return the chosed one
 */
-async function getById(id, id2) {
+async function getById(id) {
 
   const activity = await db.query(
     `SELECT * 
-    FROM activity_invite 
-    WHERE id_activity = ? AND id_scout_team = ?`, [id, id2] );
+    FROM activity_local 
+    WHERE id_activity_local = ?`, [id] );
   return activity;
 }
 
@@ -39,8 +39,8 @@ async function create(body) {
   console.log(body)
 
   const activity = await db.query(
-    `INSERT INTO activity_invite (id_scout_team, id_activity)
-      VALUES (?, ?)`,
+    `INSERT INTO activity_local (longitude_activity_local, latitude_activity_local, url_activity_local, id_zip_code)
+      VALUES (?, ?, ?, ?)`,
     [
       body.idTeam, body.idActivity
     ],
@@ -54,12 +54,12 @@ async function create(body) {
 /* 
   this function is to update a activity
 */
-async function update(id, id2, body) {
+async function update(id, body) {
 
   const activity = await db.query(
-    `UPDATE activity_invite 
-     SET id_scout_team = ?, id_activity = ?
-     WHERE id_activity = ? AND id_activity = ?`, [id, id2] 
+    `UPDATE activity_local 
+     SET longitude_activity_local = ?, latitude_activity_local = ?, url_activity_local = ?, id_zip_code = ?
+     WHERE id_activity_local = ?`, [id] 
     [
       body.idTeam, body.idActivity
     ]
@@ -69,10 +69,10 @@ async function update(id, id2, body) {
 /*
   this function is to remove a Activity
 */
-async function remove(id, id2) {
+async function remove(id) {
 
   const activity = await db.query(
-    `DELETE FROM activity_invite WHERE id_activity = ? AND id_scout_team = ?`, [id, id2] );
+    `DELETE FROM activity_local WHERE id_activity_local = ?`, [id] );
 }
 
 module.exports = {
