@@ -16,6 +16,8 @@ const instructionCatalogRoute = require('./routes/instructionCatalogRoutes');
 const zipCodeRoute = require('./routes/zipCodeRoutes');
 const activityTypeRoute = require('./routes/activityTypeRoutes');
 const scoutTeamRoute = require('./routes/scoutTeamRoutes');
+const participateActivityRoute = require('./routes/participateActivityRoutes');
+const necessaryEquipmentRoute = require('./routes/necessaryEquipmentRoutes');
 
 // to know if we are conected
 app.get('/', (req, res) => {
@@ -37,6 +39,8 @@ app.use('/instructionCatalog', instructionCatalogRoute);
 app.use('/zipCode', zipCodeRoute);
 app.use('/activityType', activityTypeRoute);
 app.use('/scoutTeam', scoutTeamRoute);
+app.use('/participate', participateActivityRoute);
+app.use('/necessaryEquipment', necessaryEquipmentRoute);
   
 app.listen(port, () => {
   console.log('Conectado na porta ' + port)

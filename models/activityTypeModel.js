@@ -29,7 +29,6 @@ async function addActivityType (body){
     `insert into activity_type 
     (name_activity_type, descr_activity_type) values (?, ?);`,
        [body.name, body.descr]);
-
   return activity;
 }
 
