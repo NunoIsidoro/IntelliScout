@@ -8,19 +8,12 @@ const port = 3000;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-const scoutRoute = require('./routes/scoutUserRoutes');
-const authenticRoute = require('./routes/authenticRoutes');
-const equipamentRoute = require('./routes/equipmentRoutes');
-const instructionRoute = require('./routes/instructionRoutes');
-const instructionCatalogRoute = require('./routes/instructionCatalogRoutes');
-const zipCodeRoute = require('./routes/zipCodeRoutes');
-const activityTypeRoute = require('./routes/activityTypeRoutes');
-const scoutTeamRoute = require('./routes/scoutTeamRoutes');
-const participateActivityRoute = require('./routes/participateActivityRoutes');
-const necessaryEquipmentRoute = require('./routes/necessaryEquipmentRoutes');
+
+
+
 
 // to know if we are conected
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.json([{
       'title': 'Bem vindo, api da IntelliScout.'
     },
@@ -30,18 +23,48 @@ app.get('/', (req, res) => {
   ]);
 })
 
+const scoutRoute = require('./routes/scoutUserRoutes');
+app.use('/api', scoutRoute);
 
-app.use('/scout', scoutRoute);
-app.use('/authentic', authenticRoute);
-app.use('/equipment', equipamentRoute);
-app.use('/instruction', instructionRoute);
-app.use('/instructionCatalog', instructionCatalogRoute);
-app.use('/zipCode', zipCodeRoute);
-app.use('/activityType', activityTypeRoute);
-app.use('/scoutTeam', scoutTeamRoute);
-app.use('/participate', participateActivityRoute);
-app.use('/necessaryEquipment', necessaryEquipmentRoute);
+const loginRoute = require('./routes/scoutLoginRoutes');
+app.use('/api', loginRoute);
+
+const roleRoute = require('./routes/scoutRoleRoutes');
+app.use('/api', roleRoute);
+
+const activityRoute = require('./routes/activityRoutes');
+app.use('/api', activityRoute);
+
+const activityInviteRoute = require('./routes/activityInviteRoutes');
+app.use('/api', activityInviteRoute);
+
+const authenticRoute = require('./routes/authenticRoutes');
+app.use('/api', authenticRoute);
+
+const equipamentRoute = require('./routes/equipmentRoutes');
+app.use('/api', equipamentRoute);
+
+const instructionRoute = require('./routes/instructionRoutes');
+app.use('/api', instructionRoute);
+
+const instructionCatalogRoute = require('./routes/instructionCatalogRoutes');
+app.use('/api', instructionCatalogRoute);
+
+const zipCodeRoute = require('./routes/zipCodeRoutes');
+app.use('/api', zipCodeRoute);
+
+const activityTypeRoute = require('./routes/activityTypeRoutes');
+app.use('/api', activityTypeRoute);
+
+const scoutTeamRoute = require('./routes/scoutTeamRoutes');
+app.use('/api', scoutTeamRoute);
+
+const participateActivityRoute = require('./routes/participateActivityRoutes');
+app.use('/api', participateActivityRoute);
   
+const necessaryEquipmentRoute = require('./routes/necessaryEquipmentRoutes');
+app.use('/api', necessaryEquipmentRoute);
+
 app.listen(port, () => {
   console.log('Conectado na porta ' + port)
 });

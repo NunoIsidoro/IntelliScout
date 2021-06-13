@@ -1,35 +1,22 @@
 const express = require('express');
 const route = express.Router();
-const scouts = require('../models/scoutUserModel.js');
+const roles = require('../models/scoutRoleModel.js');
 
-/* 
-  Route to GET all scouts on data base. 
-*/
-route.get('/scout', async function (req, res, next) {
+/* GET all scouts on data base. */
+route.get('/role/', async function (req, res, next) {
   try {
-    res.json(await scouts.getAllScout(req.query.page));
+    res.json(await roles.getAllRole(req.query.page));
   } catch (err) {
-    console.error(`*** Erro: ***\n Não consegue encontrar os escuteiro.\n`, err.message);
-    res.json([{
-      'title': 'Pedimos desculpa, não conseguimos encontrar os escuteiros :( ...'
-    },
-    {
-      'message': err.message
-    }
-  ]);
-
+    console.error(`Erro ao tentar buscar os scouts `, err.message);
     next(err);
   }
 });
 
-/* 
-  Route to GET one scout on data base. 
-*/
-route.get('/scout/:id', async function (req, res, next) {
+route.get('/role/:id', async function (req, res, next) {
   try {
-    res.json(await scouts.getScoutById(req.params.id));
+    res.json(await roles.getRoleById(req.params.id));
   } catch (err) {
-    console.error(`*** Erro: ***\n Não consegue encontrar um escuteiro.\n`, err.message);
+    console.error(`*** Erro: ***\n Não consegue encontrar um role.\n`, err.message);
     res.json([{
       'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
     },
@@ -42,12 +29,10 @@ route.get('/scout/:id', async function (req, res, next) {
   }
 });
 
-/* 
-  Route to CREATE a scout on data base. 
-*/
-route.post('/scout/', async function (req, res, next) {
+
+route.post('/role/', async function (req, res, next) {
   try {
-    res.json(await scouts.createScout(req.body));
+    res.json(await roles.createRole(req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar um escuteiro.\n`, err.message);
     res.json([{
@@ -62,13 +47,10 @@ route.post('/scout/', async function (req, res, next) {
   }
 })
 
-/* 
-  Route to update a scout on data base. 
-*/
-route.put('/scout/:id', async function (req, res, next) {
+route.put('/role/:id', async function (req, res, next) {
   try {
     console.log(req.params.id)
-    res.json(await scouts.updateScout(req.params.id, req.body));
+    res.json(await roles.updateRole(req.params.id, req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue editar o escuteiro.\n`, err.message);
     res.json([{
@@ -83,12 +65,9 @@ route.put('/scout/:id', async function (req, res, next) {
   }
 });
 
-/* 
-  Route to delete a scout on data base. 
-*/
-route.delete('/scout/:id', async function (req, res, next) {
+route.delete('/role/:id', async function (req, res, next) {
   try {
-    res.json(await scouts.removeScout(req.params.id));
+    res.json(await roles.removeRole(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue eliminar o escuteiro.\n`, err.message);
     res.json([{
