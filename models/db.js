@@ -1,6 +1,6 @@
 // conectar a base de dados e correr queries
 
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const dbConfig = require('../config/dbconfig');
 
 
@@ -19,7 +19,7 @@ async function query(sql, params) {
     console.log("Conectado há base de dados com sucesso.\n");
   });
 
-  const [results, ] = await connection.execute(sql, params);
+  const [results] = await connection.execute(sql, params);
 
   return results;
 }
