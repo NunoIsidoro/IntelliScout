@@ -4,7 +4,7 @@ const db = require("./db.js");
 async function getAll(){
   const zipCode = await db.query(
     `SELECT *
-    FROM zip_code`,);
+    FROM zip_code`);
 
   return zipCode;
 }
@@ -24,6 +24,7 @@ async function addZipCode(body){
 
   console.log(body.district);
   console.log(body.abbr);
+  console.log(body.id);
 
   const zipCode = await db.query(
     `insert into zip_code 
