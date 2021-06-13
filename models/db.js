@@ -19,7 +19,7 @@ async function query(sql, params) {
     console.log("Conectado há base de dados com sucesso.\n");
   });
 
-  const [results, ] = await connection.execute(sql, params);
+  const [results] = await connection.execute(sql, params);
 
   return results;
 }

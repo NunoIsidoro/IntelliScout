@@ -1,13 +1,13 @@
 const express = require('express');
 const route = express.Router();
 const db = require("../models/db.js");
-const equipament = require('../models/equipmentModel.js');
+const instruction = require('../models/instructionModel.js');
 
 
 
 route.get('/', async function(req, res, next) {
   try {
-    res.json(await equipament.getAll());
+    res.json(await instruction.getAll());
     res.status(200).send({mensagem: "Lista de equipamentos pedida com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
@@ -17,7 +17,7 @@ route.get('/', async function(req, res, next) {
 
 route.get('/:id', async function(req, res, next) {
   try {
-    res.json(await equipament.getById(req.params.id));
+    res.json(await instruction.getById(req.params.id));
     res.status(200).send({mensagem: "Equipamento consultado com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
@@ -26,20 +26,10 @@ route.get('/:id', async function(req, res, next) {
 });
 
 //Add a new equipment
-route.post('/', async function(req, res, next) { //erro
-
-  const verifyName = await db.query(
-    `select name_equipment from equipment where name_equipment = ?`, [req.body.name]);
+route.post('/', async function(req, res, next) {
     try {
-
-      if(verifyName.length > 0){
-        res.json({mensagem: "Equipamento já está registado!"});
-        return;
-      }
-
-      res.json(await equipament.addEquipament(req.body));
-      console.log("Equipamento adicionado com sucesso!");
-
+      res.json(await instruction.addInstruction(req.body));
+      console.log("Instrução adicionado com sucesso!");
     } catch (err) {
       res.status(300).send({mensagem: "Problema no pedido!"})
       next(err);
@@ -48,8 +38,8 @@ route.post('/', async function(req, res, next) { //erro
 
 route.delete('/:id', async function(req, res, next) {
   try {
-    res.json(await equipament.deleteEquipament(req.params.id));
-    res.status(200).send({mensagem: "Equipamento eliminado com sucesso!"})
+    res.json(await instruction.deleteInstruction(req.params.id));
+    res.status(200).send({mensagem: "Instrução eliminado com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
     next(err);
@@ -59,8 +49,8 @@ route.delete('/:id', async function(req, res, next) {
 route.put('/', async function(req, res, next) {
   try {
     console.log(req.body);
-    res.json(await equipament.editEquipment(req.body));
-    res.status(200).send({mensagem: "Equipamento alterado com sucesso!"})
+    res.json(await instruction.editInstruction(req.body));
+    res.status(200).send({mensagem: "Instrução alterado com sucesso!"})
   } catch (err) {
     res.status(200).send({mensagem: "Problema no pedido!"})
     next(err);
