@@ -10,7 +10,7 @@ const db = require("./db.js");
 /*
   this function return all ActivityInvite on DB
 */
-async function getAllActivityInvite() {
+async function getAll() {
   const activity = await db.query(
     `SELECT *
     FROM activity_invite`, );
@@ -21,19 +21,19 @@ async function getAllActivityInvite() {
 /*
   this function return the chosed one
 */
-async function getActivityInviteById(id, id2) {
+async function getById(id, id2) {
 
   const activity = await db.query(
     `SELECT * 
     FROM activity_invite 
-    WHERE id_activity = ?`, [id], ` AND id_scout_team = ?`, [id2] );
+    WHERE id_activity = ? AND id_scout_team = ?`, [id, id2] );
   return activity;
 }
 
 /*
   Creat a new activity 
 */
-async function createActivityInvite(body) {
+async function create(body) {
 
   // show data on console to know what's going on and if we receive the right values
   console.log(body)
@@ -54,7 +54,7 @@ async function createActivityInvite(body) {
 /* 
   this function is to update a activity
 */
-async function updateActivityInvite(id, id2, body) {
+async function update(id, id2, body) {
 
   const activity = await db.query(
     `UPDATE activity_invite 
@@ -69,16 +69,16 @@ async function updateActivityInvite(id, id2, body) {
 /*
   this function is to remove a Activity
 */
-async function removeActivityInvite(id) {
+async function remove(id) {
 
   const activity = await db.query(
     `DELETE FROM activity_invite WHERE id_activity = ?`, [id], ` AND id_scout_team = ?`, [id2] );
 }
 
 module.exports = {
-  getAllActivityInvite,
-  getActivityInviteById,
-  createActivityInvite,
-  updateActivityInvite,
-  removeActivityInvite
+  getAll,
+  getById,
+  create,
+  update,
+  remove
 }

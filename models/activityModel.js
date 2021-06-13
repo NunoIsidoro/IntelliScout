@@ -10,7 +10,7 @@ const db = require("./db.js");
 /*
   this function return all Activity on DB
 */
-async function getAllActivity() {
+async function getAll() {
   const activity = await db.query(
     `SELECT *
     FROM activity`, );
@@ -21,7 +21,7 @@ async function getAllActivity() {
 /*
   this function return the chosed one
 */
-async function getActivityById(id) {
+async function getById(id) {
 
   const activity = await db.query(
     `SELECT * 
@@ -34,7 +34,7 @@ async function getActivityById(id) {
 /*
   Creat a new activity 
 */
-async function createActivity(body) {
+async function create(body) {
 
   // show data on console to know what's going on and if we receive the right values
   console.log(body)
@@ -57,7 +57,7 @@ async function createActivity(body) {
 /* 
   this function is to update a activity
 */
-async function updateActivity(id, body) {
+async function update(id, body) {
 
   const activity = await db.query(
     `UPDATE activity 
@@ -75,16 +75,16 @@ async function updateActivity(id, body) {
 /*
   this function is to remove a Activity
 */
-async function removeActivity(id) {
+async function remove(id) {
 
   const activity = await db.query(
     'DELETE FROM activity WHERE id_activity = ?', [id]
   )
 }
 module.exports = {
-  getAllActivity,
-  getActivityById,
-  createActivity,
-  updateActivity,
-  removeActivity
+  getAll,
+  getById,
+  create,
+  update,
+  remove
 }

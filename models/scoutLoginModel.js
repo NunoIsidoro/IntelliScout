@@ -10,7 +10,7 @@ const db = require("./db.js");
 /*
   this function return all logins on DB
 */
-async function getAllLogin() {
+async function getAll() {
   const login = await db.query(
     `SELECT *
     FROM scout_login`, );
@@ -21,7 +21,7 @@ async function getAllLogin() {
 /*
   this function return the chosed one
 */
-async function getLoginById(id) {
+async function getById(id) {
 
   const login = await db.query(
     `SELECT * 
@@ -34,7 +34,7 @@ async function getLoginById(id) {
 /*
   Creat a new row 
 */
-async function createLogin(body) {
+async function create(body) {
 
   // show data on console to know what's going on and if we receive the right values
   console.log(body)
@@ -55,7 +55,7 @@ async function createLogin(body) {
 /* 
   this function is to update a login 
 */
-async function updateLogin(id, body) {
+async function update(id, body) {
 
   // show data on console to know what's going on and if we receive the right values
   console.log(body)
@@ -72,7 +72,7 @@ async function updateLogin(id, body) {
 /*
   this function is to remove a role
 */
-async function removeLogin(id) {
+async function remove(id) {
 
   // Remove a login
   const login = await db.query(
@@ -81,9 +81,9 @@ async function removeLogin(id) {
 
 }
 module.exports = {
-  getAllLogin,
-  getLoginById,
-  createLogin,
-  updateLogin,
-  removeLogin
+  getAll,
+  getById,
+  create,
+  update,
+  remove
 }

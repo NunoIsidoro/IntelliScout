@@ -38,9 +38,10 @@ route.post('/', async function(req, res, next) {
         return;
       }
 
+      res.json({mensagem: "Distrito adicionado com sucesso!"});
       res.json(await zipCode.addZipCode(req.body));
       console.log("Distrito adicionado com sucesso!");
-
+      
     } catch (err) {
       res.status(300).send({mensagem: "Problema no pedido!"})
       next(err);

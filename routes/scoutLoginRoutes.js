@@ -5,9 +5,9 @@ const login = require('../models/scoutLoginModel.js');
 /* 
   Route to GET all login on data base. 
 */
-route.get('/login', async function (req, res, next) {
+route.get('/', async function (req, res, next) {
   try {
-    res.json(await login.getAllLogin(req.query.page));
+    res.json(await login.getAll(req.query.page));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar os logins.\n`, err.message);
     res.json([{
@@ -25,9 +25,9 @@ route.get('/login', async function (req, res, next) {
 /* 
   Route to GET one login on data base. 
 */
-route.get('/login/:id', async function (req, res, next) {
+route.get('/:id', async function (req, res, next) {
   try {
-    res.json(await login.getLoginById(req.params.id));
+    res.json(await login.getById(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar um login.\n`, err.message);
     res.json([{
@@ -45,9 +45,9 @@ route.get('/login/:id', async function (req, res, next) {
 /* 
   Route to CREATE a login on data base. 
 */
-route.post('/login/', async function (req, res, next) {
+route.post('/', async function (req, res, next) {
   try {
-    res.json(await login.createLogin(req.body));
+    res.json(await login.create(req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar um login.\n`, err.message);
     res.json([{
@@ -65,10 +65,10 @@ route.post('/login/', async function (req, res, next) {
 /* 
   Route to update a login on data base. 
 */
-route.put('/login/:id', async function (req, res, next) {
+route.put('/:id', async function (req, res, next) {
   try {
     console.log(req.params.id)
-    res.json(await login.updateLogin(req.params.id, req.body));
+    res.json(await login.update(req.params.id, req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue editar o login.\n`, err.message);
     res.json([{
@@ -86,9 +86,9 @@ route.put('/login/:id', async function (req, res, next) {
 /* 
   Route to delete a login on data base. 
 */
-route.delete('/login/:id', async function (req, res, next) {
+route.delete('/:id', async function (req, res, next) {
   try {
-    res.json(await login.removeLogin(req.params.id));
+    res.json(await login.remove(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue eliminar o login.\n`, err.message);
     res.json([{

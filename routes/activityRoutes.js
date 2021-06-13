@@ -5,9 +5,9 @@ const activity = require('../models/activityModel.js');
 /* 
   Route to GET all activity on data base. 
 */
-route.get('/activity', async function (req, res, next) {
+route.get('/', async function (req, res, next) {
   try {
-    res.json(await activity.getAllActivity(req.query.page));
+    res.json(await activity.getAll(req.query.page));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar as atividades.\n`, err.message);
     res.json([{
@@ -25,9 +25,9 @@ route.get('/activity', async function (req, res, next) {
 /* 
   Route to GET one activity on data base. 
 */
-route.get('/activity/:id', async function (req, res, next) {
+route.get('/:id', async function (req, res, next) {
   try {
-    res.json(await activity.getActivityById(req.params.id));
+    res.json(await activity.getById(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar a atividade.\n`, err.message);
     res.json([{
@@ -45,9 +45,9 @@ route.get('/activity/:id', async function (req, res, next) {
 /* 
   Route to CREATE a activity on data base. 
 */
-route.post('/activity/', async function (req, res, next) {
+route.post('/', async function (req, res, next) {
   try {
-    res.json(await activity.createActivity(req.body));
+    res.json(await activity.create(req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar a actividade.\n`, err.message);
     res.json([{
@@ -65,10 +65,10 @@ route.post('/activity/', async function (req, res, next) {
 /* 
   Route to update a activity on data base. 
 */
-route.put('/activity/:id', async function (req, res, next) {
+route.put('/:id', async function (req, res, next) {
   try {
     console.log(req.params.id)
-    res.json(await activity.updateActivity(req.params.id, req.body));
+    res.json(await activity.update(req.params.id, req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue editar a atividade.\n`, err.message);
     res.json([{
@@ -86,9 +86,9 @@ route.put('/activity/:id', async function (req, res, next) {
 /* 
   Route to delete a scout on data base. 
 */
-route.delete('/activity/:id', async function (req, res, next) {
+route.delete('/:id', async function (req, res, next) {
   try {
-    res.json(await scouts.removeActivity(req.params.id));
+    res.json(await scouts.remove(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue eliminar a atividade.\n`, err.message);
     res.json([{

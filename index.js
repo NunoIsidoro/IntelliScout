@@ -24,46 +24,46 @@ app.get('/api', (req, res) => {
 })
 
 const scoutRoute = require('./routes/scoutUserRoutes');
-app.use('/api', scoutRoute);
+app.use('/scoutUser', scoutRoute);
 
 const loginRoute = require('./routes/scoutLoginRoutes');
-app.use('/api', loginRoute);
+app.use('/scoutLogin', loginRoute);
 
 const roleRoute = require('./routes/scoutRoleRoutes');
-app.use('/api', roleRoute);
+app.use('/scoutRole', roleRoute);
 
 const activityRoute = require('./routes/activityRoutes');
-app.use('/api', activityRoute);
+app.use('/activity', activityRoute);
 
 const activityInviteRoute = require('./routes/activityInviteRoutes');
-app.use('/api', activityInviteRoute);
+app.use('/activityInvite', activityInviteRoute);
 
 const authenticRoute = require('./routes/authenticRoutes');
-app.use('/api', authenticRoute);
+app.use('/authentic', authenticRoute);
 
 const equipamentRoute = require('./routes/equipmentRoutes');
-app.use('/api', equipamentRoute);
+app.use('/equipament', equipamentRoute);
 
 const instructionRoute = require('./routes/instructionRoutes');
-app.use('/api', instructionRoute);
+app.use('/instruction', instructionRoute);
 
 const instructionCatalogRoute = require('./routes/instructionCatalogRoutes');
-app.use('/api', instructionCatalogRoute);
+app.use('/instructionCatalog', instructionCatalogRoute);
 
 const zipCodeRoute = require('./routes/zipCodeRoutes');
-app.use('/api', zipCodeRoute);
+app.use('/zipcode', zipCodeRoute);
 
 const activityTypeRoute = require('./routes/activityTypeRoutes');
-app.use('/api', activityTypeRoute);
+app.use('/activityType', activityTypeRoute);
 
 const scoutTeamRoute = require('./routes/scoutTeamRoutes');
-app.use('/api', scoutTeamRoute);
+app.use('/scoutTeam', scoutTeamRoute);
 
 const participateActivityRoute = require('./routes/participateActivityRoutes');
-app.use('/api', participateActivityRoute);
+app.use('/participateActivity', participateActivityRoute);
   
 const necessaryEquipmentRoute = require('./routes/necessaryEquipmentRoutes');
-app.use('/api', necessaryEquipmentRoute);
+app.use('/necessaryEquipment', necessaryEquipmentRoute);
 
 app.listen(port, () => {
   console.log('Conectado na porta ' + port)
