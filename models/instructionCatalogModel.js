@@ -47,7 +47,7 @@ async function deleteInstruction(id){
 
     const instruction = await db.query(
       `update instruction_catalog set name_instruction_catalog = ?, id_instruction = ?, id_equipment = ? where id_instruction_catalog = ?;`,
-      [body.name, body.idInstr, body.idEQuip, body.id]);
+      [body.name, body.idInstr, body.idEquip, body.id]);
   
     return instruction;
   }

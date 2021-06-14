@@ -42,7 +42,7 @@ async function deleteEquipment(id_activity, id_equipment){
     const equipment = await db.query(
       `update necessary_equipment_activity set quantity_necessary_equipment_activity = ?, id_activity = ?, id_equipment = ? 
       where id_activity = ? and id_equipment = ?;`,
-      [body.quantity, body.id_activity, body.id_equipment, body.id_activity, body.id_equipment]);
+      [body.quantity, body.idActivity, body.idEquipment, body.idActivity, body.idEquipment]);
   
     return equipment;
   }

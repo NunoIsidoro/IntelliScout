@@ -21,12 +21,12 @@ async function getAll() {
 /*
   this function return the chosed one
 */
-async function getById(id, id2) {
+async function getById(idActivity, idScoutTeam) {
 
   const activity = await db.query(
     `SELECT * 
     FROM activity_invite 
-    WHERE id_activity = ? AND id_scout_team = ?`, [id, id2] );
+    WHERE id_activity = ? AND id_scout_team = ?`, [idActivity, idScoutTeam] );
   return activity;
 }
 
@@ -54,14 +54,14 @@ async function create(body) {
 /* 
   this function is to update a activity
 */
-async function update(id, id2, body) {
+async function update(body) {
 
   const activity = await db.query(
     `UPDATE activity_invite 
      SET id_scout_team = ?, id_activity = ?
-     WHERE id_activity = ? AND id_activity = ?`, [id, id2] 
+     WHERE id_activity = ? AND id_activity = ?`,
     [
-      body.idTeam, body.idActivity
+      body.idScoutTeam, body.idActivity, body.idTeam, body.idActivity
     ]
   )
 }
@@ -69,10 +69,10 @@ async function update(id, id2, body) {
 /*
   this function is to remove a Activity
 */
-async function remove(id, id2) {
+async function remove(idActivity, idScoutTeam) {
 
   const activity = await db.query(
-    `DELETE FROM activity_invite WHERE id_activity = ? AND id_scout_team = ?`, [id, id2] );
+    `DELETE FROM activity_invite WHERE id_activity = ? AND id_scout_team = ?`, [idActivity, idScoutTeam]);
 }
 
 module.exports = {

@@ -21,12 +21,12 @@ async function getAll() {
 /*
   this function return the chosed one
 */
-async function getById(id) {
+async function getById(idActivity) {
 
   const activity = await db.query(
     `SELECT * 
     FROM activity 
-    WHERE id_activity = ?`, [id]);
+    WHERE idActivity = ?`, [idActivity]);
 
   return activity;
 }
@@ -44,8 +44,8 @@ async function create(body) {
       hour_start_activity, hour_end_activity, id_activity_local, id_activity_type) \
       VALUES (?, ?, ?, ?, ?, ?, ?)',
     [
-      body.name, body.dt_start, body.dt_end, 
-      body.hour_start, body.hour_end, body.local, body.idType
+      body.name, body.dtStart, body.dtEnd, 
+      body.hourStart, body.hourEnd, body.local, body.idType
     ],
   )
 
@@ -57,17 +57,17 @@ async function create(body) {
 /* 
   this function is to update a activity
 */
-async function update(id, body) {
+async function update(body) {
 
   const activity = await db.query(
     `UPDATE activity 
      SET name_activity = ?, dt_start_activity = ?, dt_end_activity = ?,
      hour_start_activity = ?, hour_end_activity = ?, id_activity_local = ?, 
      id_activity_type = ?
-     WHERE id_activity = ?`, [id],
+     WHERE id_activity = ?`,
     [
-      body.name, body.dt_start, body.dt_end, 
-      body.hour_start, body.hour_end, body.local, body.idType
+      body.name, body.dtStart, body.dtEnd, 
+      body.hourStart, body.hourEnd, body.local, body.idType, body.idActivity
     ]
   )
 }
@@ -75,10 +75,10 @@ async function update(id, body) {
 /*
   this function is to remove a Activity
 */
-async function remove(id) {
+async function remove(idActivity) {
 
   const activity = await db.query(
-    'DELETE FROM activity WHERE id_activity = ?', [id]
+    'DELETE FROM activity WHERE id_activity = ?', [idActivity]
   )
 }
 module.exports = {

@@ -21,12 +21,12 @@ async function getAll() {
 /*
   this function return the chosed one
 */
-async function getById(id) {
+async function getById(idActivityLocal) {
 
   const activity = await db.query(
     `SELECT * 
     FROM activity_local 
-    WHERE id_activity_local = ?`, [id] );
+    WHERE id_activity_local = ?`, [idActivityLocal] );
   return activity;
 }
 

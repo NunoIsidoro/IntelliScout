@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const db = require("./models/db.js");
-const port = 3000;
+const port = 60000;
 
 // this is to for mysql use the values in body
 app.use(bodyParser.urlencoded({extended: true}));
