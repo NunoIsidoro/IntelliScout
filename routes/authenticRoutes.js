@@ -34,55 +34,31 @@ route.get('/:gmail', async function(req, res, next) {
   }
 });
 
-route.post('/register', async function(req, res, next){
-    const { gmail, password, role} = req.body;
-      try {
-          const verifyGmail = `select email_scout_login from scout_login where email_scout_login = '` + gmail + `'`;
-          const scriptSQL = `insert into scout_login (email_scout_login, password_scout_login, id_scout_role) values ('` + gmail + `','` + password + `',` + role +`)`;
 
-          const verifyGmailQuery = await db.query(verifyGmail);
+route.post( '/login', async function (req, res, next){
+  const { gmail, password } = req.body;
+    try {
+        console.log(gmail, password)
+        const scriptSQL = `select email_scout_login from scout_login where email_scout_login = '` + gmail + `' and strcmp(password_scout_login, '` + password + `') = 0;`
+        console.log(scriptSQL);
+        const result = await db.query(scriptSQL);
+        console.log(result);
 
-          if(verifyGmailQuery.length > 0)
-          {
-            res.status(300).send({mensagem: "Erro: Gmail já está em uso!"});
-            return;
-          }else{
-            const result = await db.query(scriptSQL);
-            res.status(201).send({mensagem: "Utilizador registado com sucesso!"});
-            res.status(200).send({auth: true})
-          }
+        if(result.length > 0){
+          res.status(200).send({mensagem: "Login efetuado com sucesso!"})
+          res.status(200).send({auth: true})
+          return;
 
-      } catch (err) {
-          console.error('SQL error', err);
-          res.status(500).send({mensagem: "Erro na conexão BD"})
-      }
-  
-  });
+        }else{
+          res.send({mensagem: "Login ou password incorretos!"})
+          return;
+        }
 
-  route.post( '/login', async function (req, res, next){
-    const { gmail, password } = req.body;
-      try {
-          console.log(gmail, password)
-          const scriptSQL = `select email_scout_login from scout_login where email_scout_login = '` + gmail + `' and strcmp(password_scout_login, '` + password + `') = 0;`
-          console.log(scriptSQL);
-          const result = await db.query(scriptSQL);
-          console.log(result);
-
-          if(result.length > 0){
-            res.status(200).send({mensagem: "Login efetuado com sucesso!"})
-            res.status(200).send({auth: true})
-            return;
-
-          }else{
-            res.send({mensagem: "Login ou password incorretos!"})
-            return;
-          }
-
-      } catch (err) {
-          console.error('SQL error', err);
-          res.status(500).send({mensagem: "Erro na conexão BD"})
-      }
-  });
+    } catch (err) {
+        console.error('SQL error', err);
+        res.status(500).send({mensagem: "Erro na conexão BD"})
+    }
+});
 
   route.delete('/', async function (req, res, next){
 
