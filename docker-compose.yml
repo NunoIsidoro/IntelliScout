@@ -1,20 +1,20 @@
 version: "3.8"
 
 services: 
-    app:
+    IntelliScout:
         build: 
             context: .
             dockerfile: Dockerfile
         ports: 
             - 60000:60000
         volumes: 
-            - -:/IntelliScout
+            - .:/IntelliScout
             - '/IntelliScout/node_modules'
         depends_on: 
-            -mysql_server
+            - intelliscout
 
-mysql_server:
-    image: mysql:8.0
+intelliscout:
+    image: intelliscout
     environment: 
         - MYSQL_DATABASE = scouts
         - MYSQL_USER = root
