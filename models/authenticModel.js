@@ -16,6 +16,14 @@ async function getById(id){
 
   return authentic;
 }
+
+async function getByGmail(id){
+  const authentic = await db.query(
+    `SELECT *
+    FROM scout_login where email_scout_login = ` + gmail + `;`);
+
+  return authentic;
+}
 /*
 async function newUser(body){
 
@@ -33,5 +41,6 @@ async function newUser(body){
 
 module.exports = {
   getListUsers,
-  getById
+  getById,
+  getByGmail
 }
