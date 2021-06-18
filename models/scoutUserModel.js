@@ -13,7 +13,7 @@ const db = require("./db.js");
 async function getAllScout() {
   const scouts = await db.query(
     `SELECT *
-    FROM scout_user`, );
+    FROM scout_user`);
 
   return scouts;
 }
@@ -76,11 +76,11 @@ async function updateScout(id, body) {
   const scout = await db.query(
     `UPDATE scout_user SET name_scout_user = ?, birth_scout_user = ?, gender_scout_user = ?,
       phone_scout_user = ?, adress_scout_user = ?, active_scout_user = ?, nin_scout_user = ?, phone_ee_scout_user = ?, url_img_scout_user = ?, 
-      scout_login_id_scout_login = ?, id_scout_team = ?, id_zip_code = ?`,
+      id_scout_login = ?, id_scout_team = ?, id_zip_code = ? where id_scout_user = ?`,
     [
       body.name, body.birth, body.gender, body.phone, body.adress,
       body.active, body.nin, body.phone_ee, body.url_img,
-      body.scout_login, body.scout_team, body.zip_cod
+      body.scout_login, body.scout_team, body.zip_cod, id
     ]
   )
   let errorMessage = 'Error: Cannot update...'

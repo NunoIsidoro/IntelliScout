@@ -3,9 +3,9 @@ const route = express.Router();
 const roles = require('../models/scoutRoleModel.js');
 
 /* GET all scouts on data base. */
-route.get('//', async function (req, res, next) {
+route.get('/', async function (req, res, next) {
   try {
-    res.json(await roles.getAll(req.query.page));
+    res.json(await roles.getAllRole(req.query.page));
   } catch (err) {
     console.error(`Erro ao tentar buscar os scouts `, err.message);
     next(err);

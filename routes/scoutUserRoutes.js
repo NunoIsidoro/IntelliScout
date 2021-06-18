@@ -7,7 +7,7 @@ const scouts = require('../models/scoutUserModel.js');
 */
 route.get('', async function (req, res, next) {
   try {
-    res.json(await scouts.getAll(req.query.page));
+    res.json(await scouts.getAllScout(req.body));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar os escuteiro.\n`, err.message);
     res.json([{
@@ -27,7 +27,7 @@ route.get('', async function (req, res, next) {
 */
 route.get('/:id', async function (req, res, next) {
   try {
-    res.json(await scouts.getById(req.params.id));
+    res.json(await scouts.getScoutById(req.params.id));
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar um escuteiro.\n`, err.message);
     res.json([{
@@ -48,6 +48,7 @@ route.get('/:id', async function (req, res, next) {
 route.post('/', async function (req, res, next) {
   try {
     res.json(await scouts.create(req.body));
+    res.status(200).send({auth: true})
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar um escuteiro.\n`, err.message);
     res.json([{

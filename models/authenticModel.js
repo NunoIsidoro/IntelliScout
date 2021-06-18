@@ -17,10 +17,10 @@ async function getById(id){
   return authentic;
 }
 
-async function getByGmail(id){
+async function getByGmail(gmail){
   const authentic = await db.query(
     `SELECT *
-    FROM scout_login where email_scout_login = ` + gmail + `;`);
+    FROM scout_login where email_scout_login = '` + gmail + `';`);
 
   return authentic;
 }
