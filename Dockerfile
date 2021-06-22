@@ -2,16 +2,10 @@ FROM node:latest
 
 WORKDIR /IntelliScout
 
-COPY package.json .
+COPY app/package.json .
 
-RUN npm install -g npm@7.17.0
+RUN npm install
 
-RUN npm install -g npm
+COPY app/. .
 
-COPY . .
-
-EXPOSE 60000
-
-VOLUME ["/IntelliScout/node_modules"]
-
-CMD [ "npm", "run", "devStart"]
+CMD [ "node", "index.js"]
