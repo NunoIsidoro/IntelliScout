@@ -45,7 +45,7 @@ async function deleteEquipament(id){
 
   async function editEquipment(body){
     const equipment = await db.query(
-      `update equipment set name_equipment = ?, quantity_equipment = ?, descr_equipment = ? img_url_equipment = ? where id_equipment = ?;`,
+      `update equipment set name_equipment = ?, quantity_equipment = ?, descr_equipment = ?, img_url_equipment = ? where id_equipment = ?;`,
       [body.name, body.quantity, body.descr, body.img_url,body.id]);
   
     return equipment;

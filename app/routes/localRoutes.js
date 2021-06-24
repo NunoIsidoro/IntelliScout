@@ -6,13 +6,18 @@ const local = require('../models/localModel.js');
 
 
 route.get('/', async function(req, res, next) {
-  res.json(await local.getAll());
- 
   try {
-    
-    res.status(200).send({mensagem: "Lista de distritos pedida com sucesso!"})
+    res.json(await local.getAllLocal(req.query.page));
   } catch (err) {
-    res.status(200).send({mensagem: "Problema no pedido!"})
+    console.error(`*** Erro: ***\n Não consegue encontrar os distritos.\n`, err.message);
+    res.json([{
+      'title': 'Pedimos desculpa, não conseguimos encontrar os distritos:( ...'
+    },
+    {
+      'message': err.message
+    }
+  ]);
+
     next(err);
   }
 });

@@ -47,7 +47,7 @@ async function createScout(body) {
     [
       body.name, body.birth, body.gender, body.phone, body.address,
       body.active, body.nin, body.phone_ee, body.url_img,
-      body.scout_login, body.scout_team, body.zip_cod
+      body.scout_login, body.scout_team, body.id_local
     ],
   )
 
@@ -97,9 +97,9 @@ async function getDistrict(idActivityLocal) {
 async function getTeam(idTeam) {
 
   const activity = await db.query(
-    `Select name_scout_team
-    from scout_team
-    where id_scout_team = ?`, [idTeam]);
+    `SELECT name_scout_team
+    FROM scout_team
+    WHERE id_scout_team = ?`, [idTeam]);
 
   return activity;
 }

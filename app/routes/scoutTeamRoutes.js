@@ -26,16 +26,11 @@ route.get('/:id', async function(req, res, next) {
 });
 
 //Add a new equipment
-route.post('/', async function(req, res, next) { //erro
+route.post('/', async function(req, res, next) {
 
   const verifyName = await db.query(
     `select name_scout_team from scout_team where name_scout_team = ?`, [req.body.name]);
     try {
-
-      if(verifyName.length > 0){
-        res.json({mensagem: "Equipa já está registada!"});
-        return;
-      }
 
       res.json(await team.addTeam(req.body));
       res.status(200).send({mensagem: "Equipa adicionada com sucesso!"});
@@ -66,6 +61,5 @@ route.put('/', async function(req, res, next) {
     next(err);
   }
 });
-
 
 module.exports = route;

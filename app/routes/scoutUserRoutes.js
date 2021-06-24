@@ -11,12 +11,12 @@ route.get('', async function (req, res, next) {
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar os escuteiro.\n`, err.message);
     res.json([{
-      'title': 'Pedimos desculpa, não conseguimos encontrar os escuteiros :( ...'
-    },
-    {
-      'message': err.message
-    }
-  ]);
+        'title': 'Pedimos desculpa, não conseguimos encontrar os escuteiros :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
 
     next(err);
   }
@@ -31,12 +31,12 @@ route.get('/:id', async function (req, res, next) {
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar um escuteiro.\n`, err.message);
     res.json([{
-      'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
-    },
-    {
-      'message': err.message
-    }
-  ]);
+        'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
 
     next(err);
   }
@@ -51,12 +51,12 @@ route.get('/district/:id', async function (req, res, next) {
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar um escuteiro.\n`, err.message);
     res.json([{
-      'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
-    },
-    {
-      'message': err.message
-    }
-  ]);
+        'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
 
     next(err);
   }
@@ -71,12 +71,12 @@ route.get('/team/:id', async function (req, res, next) {
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue encontrar um escuteiro.\n`, err.message);
     res.json([{
-      'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
-    },
-    {
-      'message': err.message
-    }
-  ]);
+        'title': 'Pedimos desculpa, não conseguimos encontrar o escuteiro :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
 
     next(err);
   }
@@ -88,17 +88,16 @@ route.get('/team/:id', async function (req, res, next) {
 route.post('/', async function (req, res, next) {
   try {
     res.json(await scouts.createScout(req.body));
-    res.status(200).send({auth: true})
+
   } catch (err) {
     console.error(`*** Erro: ***\n Não consegue adicionar um escuteiro.\n`, err.message);
     res.json([{
-      'title': 'Pedimos desculpa, não conseguimos adicionar um escuteiro :( ...'
-    },
-    {
-      'message': err.message
-    }
-  ]);
-
+        'title': 'Pedimos desculpa, não conseguimos adicionar um escuteiro :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
     next(err)
   }
 })

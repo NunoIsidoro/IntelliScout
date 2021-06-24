@@ -39,7 +39,10 @@ const authenticRoute = require('./routes/authenticRoutes');
 app.use('/authentic', authenticRoute);
 
 const equipamentRoute = require('./routes/equipmentRoutes');
-app.use('/equipament', equipamentRoute);
+app.use('/equipment', equipamentRoute);
+
+const sectionRoute = require('./routes/scoutSectionRoutes');
+app.use('/section', sectionRoute);
 
 const instructionRoute = require('./routes/instructionRoutes');
 app.use('/instruction', instructionRoute);
@@ -47,14 +50,15 @@ app.use('/instruction', instructionRoute);
 const instructionCatalogRoute = require('./routes/instructionCatalogRoutes');
 app.use('/instructionCatalog', instructionCatalogRoute);
 
-const zipCodeRoute = require('./routes/zipCodeRoutes');
-app.use('/zipcode', zipCodeRoute);
-
 const activityTypeRoute = require('./routes/activityTypeRoutes');
 app.use('/activityType', activityTypeRoute);
 
 const scoutTeamRoute = require('./routes/scoutTeamRoutes');
 app.use('/scoutTeam', scoutTeamRoute);
+
+const localRoute = require('./routes/localRoutes');
+app.use('/local', localRoute);
+
 
 const participateActivityRoute = require('./routes/participateActivityRoutes');
 app.use('/participateActivity', participateActivityRoute);

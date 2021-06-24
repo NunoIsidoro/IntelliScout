@@ -1,7 +1,7 @@
 const db = require("./db.js");
 
 // this function return all scouts on DB
-async function getAll(){
+async function getAllLocal(){
   const local = await db.query(
     `SELECT *
     FROM locality`);
@@ -53,7 +53,7 @@ async function deleteLocal(id){
 
 
 module.exports = {
-  getAll,
+  getAllLocal,
   getById,
   addLocal,
   deleteLocal,

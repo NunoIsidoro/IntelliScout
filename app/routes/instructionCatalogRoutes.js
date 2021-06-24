@@ -5,67 +5,90 @@ const instruction = require('../models/instructionCatalogModel.js');
 
 
 
-route.get('/', async function(req, res, next) {
+route.get('/', async function (req, res, next) {
   try {
-    res.json(await instruction.getAll());
-    res.status(200).send({mensagem: "Lista de equipamentos pedida com sucesso!"})
+    res.json(await instruction.getAll(req.query.page));
   } catch (err) {
-    res.status(200).send({mensagem: "Problema no pedido!"})
+    console.error(`*** Erro: ***\n Não consegue encontrar as instruções.\n`, err.message);
+    res.json([{
+        'title': 'Pedimos desculpa, não conseguimos encontrar as instruções. :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
+
     next(err);
   }
 });
 
-route.get('/:id', async function(req, res, next) {
+/* 
+  Route to GET one scout on data base. 
+*/
+route.get('/:id', async function (req, res, next) {
   try {
     res.json(await instruction.getById(req.params.id));
-    res.status(200).send({mensagem: "Equipamento consultado com sucesso!"})
   } catch (err) {
-    res.status(200).send({mensagem: "Problema no pedido!"})
+    console.error(`*** Erro: ***\n Não consegue encontrar a instrução.\n`, err.message);
+    res.json([{
+        'title': 'Pedimos desculpa, não conseguimos encontrar a instrução :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
+
     next(err);
   }
 });
 
 //Add a new equipment
-route.post('/', async function(req, res, next) {
+route.post('/', async function (req, res, next) {
+  try {
+    res.json(await instruction.addInstruction(req.body));
+  } catch (err) {
+    console.error(`*** Erro: ***\n Não consegue adicionar a instrução.\n`, err.message);
+    res.json([{
+        'title': 'Pedimos desculpa, não conseguimos adicionar a instrução :( ...'
+      },
+      {
+        'message': err.message
+      }
+    ]);
 
-  const verifyTitle = await db.query(
-    `select title_instruction from instruction where title_instruction = ?`, [req.body.title]);
+    next(err)
+  }
+})
 
-    try {
-
-    if(verifyTitle.length > 0){
-        res.send({mensagem: "Instrução já está registado!"});
-        return;
-    }
-
-      res.json(await instruction.addInstruction(req.body));
-      console.log("Instrução adicionado com sucesso!");
-    } catch (err) {
-      res.status(300).send({mensagem: "Problema no pedido!"})
-      next(err);
-    }
-});
-
-route.delete('/:id', async function(req, res, next) {
+route.delete('/:id', async function (req, res, next) {
   try {
     res.json(await instruction.deleteInstruction(req.params.id));
-    res.status(200).send({mensagem: "Instrução eliminado com sucesso!"})
+    res.status(200).send({
+      mensagem: "Instrução eliminado com sucesso!"
+    })
   } catch (err) {
-    res.status(200).send({mensagem: "Problema no pedido!"})
+    res.status(200).send({
+      mensagem: "Problema no pedido!"
+    })
     next(err);
   }
 });
 
-route.put('/', async function(req, res, next) {
+route.put('/', async function (req, res, next) {
   try {
     console.log(req.body);
     res.json(await instruction.editInstruction(req.body));
-    res.status(200).send({mensagem: "Instrução alterado com sucesso!"})
+    res.status(200).send({
+      mensagem: "Instrução alterado com sucesso!"
+    })
   } catch (err) {
-    res.status(200).send({mensagem: "Problema no pedido!"})
+    res.status(200).send({
+      mensagem: "Problema no pedido!"
+    })
     next(err);
   }
 });
+
 
 
 module.exports = route;
